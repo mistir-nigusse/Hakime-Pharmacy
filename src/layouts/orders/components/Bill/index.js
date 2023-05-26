@@ -7,7 +7,7 @@ import MDTypography from "components/MDTypography";
 import MDButton from "components/MDButton";
 import { useMaterialUIController } from "context";
 
-import PayButton from "./payButton";
+import PayButton from "./acceptButton";
 import DeclineButton from "./declineButton";
 
 function Bill({ name, role, wallet, amount, bank_name, account, id,  noGutter }) {

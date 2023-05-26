@@ -6,11 +6,7 @@ import DialogContent from '@mui/material/DialogContent';
 import DialogTitle from '@mui/material/DialogTitle';
 import { Updatewithdrawal } from 'api/mutations/makePayment';
 import { useMutation } from "@apollo/client";
-import FormControlLabel from '@mui/material/FormControlLabel';
-import FormControl from '@mui/material/FormControl';
-import FormLabel from '@mui/material/FormLabel';
-import AddIcon from '@mui/icons-material/Add';
-import { Label } from '@mui/icons-material';
+
 import { TextField } from '@mui/material';
 import { GET_WITHDRAWAL_REQUEST } from 'api/Queries/queryWithdrawalRequests';
 import MDButton from 'components/MDButton';
@@ -71,7 +67,7 @@ if(data) return <p className='text-green-900 font-bold'>confirmed</p>
     <div className=''>
             <MDButton onClick={handleClickOpen} variant="text" color={darkMode ? "white" : "dark"}>
     
-         Pay
+         Accept Order
       </MDButton>
       <Dialog open={open} onClose={handleClose} maxWidth="xs" fullWidth>
         <DialogTitle>Fill out the form</DialogTitle>

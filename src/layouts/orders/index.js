@@ -11,7 +11,7 @@ import DefaultInfoCard from "examples/Cards/InfoCards/DefaultInfoCard";
 
 import PaymentMethod from "layouts/billing/components/PaymentMethod";
 import Invoices from "layouts/billing/components/Invoices";
-import BillingInformation from "layouts/billing/components/BillingInformation";
+import OrderInformation from "layouts/orders/components/orderInformation";
 import Transactions from "layouts/billing/components/Transactions";
 
 function Orders() {
@@ -22,7 +22,7 @@ function Orders() {
        
         <MDBox mb={3}>
         
-              <BillingInformation />
+              <OrderInformation />
          
        
         </MDBox>
