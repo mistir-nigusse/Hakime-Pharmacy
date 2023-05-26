@@ -33,7 +33,7 @@ import bgImage from "assets/images/bg-sign-up-cover.jpeg";
 
 import { useMutation, } from '@apollo/client';
 import { GET_DELIVERY_PERSON } from "api/Queries/queryDeliveryPerson";
-import { REGISTER_DELIVERY_PERSON } from "api/mutations/registerDeliveryPerson";
+import { INSERT_MEDICINE } from "api/mutations/insertMedcine";
 import { useNavigate } from "react-router-dom";
 import VerifyAccount from "../verify-account";
 import MDProgress from "components/MDProgress";
@@ -41,32 +41,33 @@ import CircularProgress from '@mui/material/CircularProgress';
 
 import DashboardLayout from "examples/LayoutContainers/DashboardLayout";
 import DashboardNavbar from "examples/Navbars/DashboardNavbar";
-import DeliveryPersonTableData from "layouts/tables/data/deliveryPersonTableData";
+import MedcineTableData from "layouts/tables/data/medcinesTableData";
+import { GET_MEDICINE } from "api/Queries/queryMedcine";
 
 function Cover() {
 
-  const [fullName, setFullName] = React.useState("");
-  const [city, setCity] = React.useState("");
-  const [email, setEmail] = React.useState("");
-  const [latitude, setLatitude] = React.useState("");
-  const [longtiude, setLongtiude] = React.useState("");
-  const [location, setLocation] = React.useState("");
-  const [profilePicture, setProfilePicture] = React.useState("");
+  const [medcineName, setMedcineName] = React.useState("");
+  const [price, setPrice] = React.useState("");
+  const [brandName, setBrandName] = React.useState("");
+  const [description, setDescription] = React.useState("");
+  const [productionDate, setProductionDate] = React.useState("");
+  const [expireDate, setExpireDate] = React.useState("");
+  const [picture, setPicture] = React.useState("");
   const [phoneNo, setPhoneNo] = React.useState("");
   const [id, setId] = React.useState("");
   const navigate = useNavigate();
   const handleSubmit = (e) =>{
     e.preventDefault();
-    // console.log(specialityName)
-       setId(register_delivery_person({ variables: { city:city, email:email, full_name: fullName, latitude: latitude, longitude:longtiude , phone_number: phoneNo, profile_picture:profilePicture, location:location} }));
-    // navigate('/authentication/verify-account')
+    // integrate to add medcine
+  //     setId(insert_medicine({ variables: { } }));
+    
   }
   
 
-  const[register_delivery_person, {data,loading,error}] = useMutation(REGISTER_DELIVERY_PERSON,{
+  const[insert_medicine, {data,loading,error}] = useMutation(INSERT_MEDICINE,{
     refetchQueries:[
-      {query: GET_DELIVERY_PERSON},
-      'GET_DELIVERY_PERSON'
+      {query: GET_MEDICINE},
+      'GET_MEDCINE'
     ]
    });
    if (loading) return  <div style={{
@@ -86,7 +87,7 @@ function Cover() {
      <MDGrid item xs={6} md={8}>
 
      <Card>
-          <DeliveryPersonTableData/>
+          <MedcineTableData/>
          </Card>
 
      </MDGrid>
@@ -105,48 +106,44 @@ function Cover() {
           fullWidth
         >
           <MDTypography variant="h4" fontWeight="medium" color="white" mt={1}>
-            Join Hakime
+            Add Medcine
           </MDTypography>
           <MDTypography display="block" variant="button" color="white" my={1}>
-            Enter all the required fields to register a Delivery person
+            Enter all the required fields to add a medcine
           </MDTypography>
         </MDBox>
         <MDBox pt={4} pb={3} px={3}>
   <MDBox component="form" role="form">
     
         <MDBox mb={2}>
-          <MDInput type="text" label="Full name" variant="standard"   onChange = {(e)=>setFullName(e.target.value)} fullWidth/>
+          <MDInput type="text" label="Medcine Name" variant="standard"   onChange = {(e)=>setMedcineName(e.target.value)} fullWidth/>
         </MDBox>
         <MDBox mb={2}>
-          <MDInput type="email" label="Email" variant="standard" onChange = {(e)=>setEmail(e.target.value)} fullWidth />
+          <MDInput type="email" label="Price" variant="standard" onChange = {(e)=>setPrice(e.target.value)} fullWidth />
         </MDBox>
         <MDBox mb={2}>
-          <MDInput type="text" label="Phone no" variant="standard" onChange = {(e)=>setPhoneNo(e.target.value)} fullWidth />
+          <MDInput type="text" label="Brand Name / Made In" variant="standard" onChange = {(e)=>setBrandName(e.target.value)} fullWidth />
         </MDBox>
         <MDBox mb={2}>
-          <MDInput type="text" label="City" variant="standard" onChange = {(e)=>setCity(e.target.value)} fullWidth/>
-        </MDBox>
-       
-        <MDBox mb={2}>
-          <MDInput type="text" label="Longitude" variant="standard"   onChange = {(e)=>setLongtiude(e.target.value)} fullWidth/>
+          <MDInput type="text" label="Description" variant="standard" onChange = {(e)=>setDescription(e.target.value)} fullWidth/>
         </MDBox>
        
         <MDBox mb={2}>
-          <MDInput type="text" label="Location" variant="standard" fullWidth onChange = {(e)=>setLocation(e.target.value)} />
+          <MDInput type="text" label="Production date" variant="standard"   onChange = {(e)=>setProductionDate(e.target.value)} fullWidth/>
+        </MDBox>
+       
+        <MDBox mb={2}>
+          <MDInput type="text" label="Expire Date" variant="standard" fullWidth onChange = {(e)=>setExpireDate(e.target.value)} />
         </MDBox>
       
-       
-        <MDBox mb={2}>
-          <MDInput type="text" label="Latitude" variant="standard" fullWidth onChange = {(e)=>setLatitude(e.target.value)}/>
-        </MDBox>
 
         <MDBox mb={2}>
           
-          <MDInput type="text" label="profile image" variant="standard" fullWidth onChange = {(e)=>setProfilePicture(e.target.value)} />
+          <MDInput type="text" label="image" variant="standard" fullWidth onChange = {(e)=>setPicture(e.target.value)} />
         </MDBox>
     <MDBox mt={4} mb={1}>
       <MDButton variant="gradient" color="info" fullWidth onClick={handleSubmit} >
-        Register
+        Add Medcine
       </MDButton>
     </MDBox>
   </MDBox>

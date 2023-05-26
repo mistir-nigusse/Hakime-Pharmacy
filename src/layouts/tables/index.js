@@ -16,7 +16,7 @@ import authorsTableData from "layouts/tables/data/authorsTableData";
 import projectsTableData from "layouts/tables/data/projectsTableData";
 import TestUserTable from "./data/projectsTableData";
 import AppointmentTable from "./data/appointmentTableData";
-import DeliveryPersonTableData from "./data/deliveryPersonTableData";
+import DeliveryPersonTableData from "./data/medcinesTableData";
 import Pharmacies from "./data/pharmaciesTableData";
 import PharmaciesTableData from "./data/pharmaciesTableData";
 import OrdersTable from "./data/allordersTableData";

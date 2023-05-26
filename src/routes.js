@@ -6,12 +6,12 @@ import Notifications from "layouts/notifications";
 import Advertisment from "layouts/Adverisement"
 import Profile from "layouts/profile";
 import Doctors from "layouts/Doctors";
-import SignUpPharmacy from "layouts/authentication/sign-up-pharmacy";
-import SignUpDeliveryPerson from "layouts/authentication/sign-up-delivery-worker";
 import SignIn from "layouts/authentication/sign-in"
 import VerifyAccount from "layouts/authentication/verify-account";
 import NewDoctorProfile from "layouts/Doctors/new-doctor-profile";
 import Icon from "@mui/material/Icon";
+import Orders from "layouts/orders";
+import AddMedcine from "layouts/authentication/AddMedcine"
 
 const routes = [
   {
@@ -24,11 +24,11 @@ const routes = [
   },
   {
     type: "collapse",
-    name: "Orders",
-    key: "orders and appointments",
+    name: "Manage Orders",
+    key: "Manage Orders",
     icon: <Icon fontSize="small">table_view</Icon>,
-    route: "/orders-and-appointments",
-    component: <Tables />,
+    route: "/manage-orders",
+    component: <Orders/>,
   },
   {
     type: "collapse",
@@ -38,23 +38,14 @@ const routes = [
     route: "/billing",
     component: <Billing />,
   },
-  {
-    type: "collapse",
-    name: "Medcines",
-    key: "advertisment",
-    icon: <Icon fontSize="small">ad_units</Icon>,
-    route: "/advertisment",
-    component: <Advertisment />,
-  },
-
-  {
-    type: "collapse",
-    name: "Notifications",
-    key: "notifications",
-    icon: <Icon fontSize="small">notifications</Icon>,
-    route: "/notifications",
-    component: <Notifications />,
-  },
+  // {
+  //   type: "collapse",
+  //   name: "Manage Medcines",
+  //   key: "advertisment",
+  //   icon: <Icon fontSize="small">ad_units</Icon>,
+  //   route: "/advertisment",
+  //   component: <Advertisment />,
+  // },
 
   // {
   //   type: "collapse",
@@ -64,21 +55,30 @@ const routes = [
   //   route: "/notifications",
   //   component: <Notifications />,
   // },
+
+  // {
+  //   type: "collapse",
+  //   name: "Notifications",
+  //   key: "notifications",
+  //   icon: <Icon fontSize="small">notifications</Icon>,
+  //   route: "/notifications",
+  //   component: <Notifications />,
+  // },
+  // {
+  //   type: "collapse",
+  //   name: "Manage Pharmacies",
+  //   key: "sign-up-pharmacy",
+  //   icon: <Icon fontSize="small">assignment</Icon>,
+  //   route: "/authentication/sign-up-pharmacy",
+  //   component: <SignUpPharmacy />,
+  // },
   {
     type: "collapse",
-    name: "Manage Pharmacies",
-    key: "sign-up-pharmacy",
-    icon: <Icon fontSize="small">assignment</Icon>,
-    route: "/authentication/sign-up-pharmacy",
-    component: <SignUpPharmacy />,
-  },
-  {
-    type: "collapse",
-    name: "Delivery Workers",
+    name: "Manage Medcine",
     key: "sign-up-delivery-person",
     icon: <Icon fontSize="small">assignment</Icon>,
     route: "/authentication/sign-up-delivery-person",
-    component: <SignUpDeliveryPerson/>,
+    component: <AddMedcine/>,
   },
   {
     type: "collapse",

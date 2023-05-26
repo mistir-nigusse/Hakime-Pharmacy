@@ -13,7 +13,7 @@ import PaymentMethod from "layouts/billing/components/PaymentMethod";
 import Invoices from "layouts/billing/components/Invoices";
 import BillingInformation from "layouts/billing/components/BillingInformation";
 import Transactions from "layouts/billing/components/Transactions";
-
+import WithdrawalRequest from "layouts/authentication/WithdrawalRequestForm"
 function Billing() {
   return (
     <DashboardLayout>
@@ -24,41 +24,25 @@ function Billing() {
             <Grid item xs={12} lg={12}>
               <Grid container spacing={3}>
                 
-                <Grid item xs={12} md={6} xl={3}>
+                <Grid item xs={12} md={6} xl={6}>
                   <DefaultInfoCard
                     icon="account_balance"
-                    title="Consultation"
-                    description="Earning from consultation"
-                    value="+$2000"
+                    title="Wallet"
+                    description="currently available balance"
+                    value="$2000"
                   />
                 </Grid>
-                <Grid item xs={12} md={6} xl={3}>
+                <Grid item xs={12} md={6} xl={6}>
                   <DefaultInfoCard
-                    icon="paypal"
-                    title="Pharmacies"
-                    description="Earning from pharmacies"
-                    value="$455.00"
-                  />
-                </Grid>
-                <Grid item xs={12} md={6} xl={3}>
-                  <DefaultInfoCard
-                    icon="paypal"
-                    title="Advertisment"
-                    description="Earning from Advertisement"
-                    value="$455.00"
-                  />
-                </Grid>
-                <Grid item xs={12} md={6} xl={3}>
-                  <DefaultInfoCard
-                    icon="paypal"
+                    icon="account_balance"
                     title="Total"
-                    description="Total earning this month"
-                    value="$455.00"
+                    description="total revenue generated"
+                    value="$43,455.00"
                   />
                 </Grid>
-                {/* <Grid item xs={12}>
-                  <PaymentMethod />
-                </Grid> */}
+               
+                <Grid item xs={12} md={6} xl={6}>
+                </Grid>
               </Grid>
             </Grid>
             {/* <Grid item xs={12} lg={4}>
@@ -70,7 +54,9 @@ function Billing() {
         <MDBox mb={3}>
           <Grid container spacing={3}>
             <Grid item xs={12} md={6}>
-              <BillingInformation />
+            <WithdrawalRequest/>
+
+              {/* <BillingInformation /> */}
             </Grid>
             <Grid item xs={12} md={6}>
               <Transactions />

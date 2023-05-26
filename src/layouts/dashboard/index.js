@@ -89,7 +89,7 @@ function Dashboard() {
                 <ReportsBarChart
                   color="info"
                   title="Completed"
-                  description="Successful orders and appointments"
+                  description="Successful orders"
                   date="This month"
                   chart={reportsBarChartData}
                 />
@@ -99,7 +99,7 @@ function Dashboard() {
               <MDBox mb={3}>
                 <ReportsLineChart
                   color="success"
-                  title="Medicine delivery sales"
+                  title="Medicine sales"
                   description={
                     <>
                       (<strong>+15%</strong>) increase in today sales.

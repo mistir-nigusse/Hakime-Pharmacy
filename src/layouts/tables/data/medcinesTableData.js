@@ -1,34 +1,23 @@
 
-import Icon from "@mui/material/Icon";
 import MDBox from "components/MDBox";
 import MDTypography from "components/MDTypography";
 import MDAvatar from "components/MDAvatar";
 import MDProgress from "components/MDProgress";
 import { useQuery, useMutation } from "@apollo/client";
-import LogoAsana from "assets/images/small-logos/logo-asana.svg";
-import logoGithub from "assets/images/small-logos/github.svg";
-import logoAtlassian from "assets/images/small-logos/logo-atlassian.svg";
-import logoSlack from "assets/images/small-logos/logo-slack.svg";
-import logoSpotify from "assets/images/small-logos/logo-spotify.svg";
-import logoInvesion from "assets/images/small-logos/logo-invision.svg";
+
 import Grid from "@mui/material/Grid";
 import Card from "@mui/material/Card";
 
 
-import DashboardLayout from "examples/LayoutContainers/DashboardLayout";
-import DashboardNavbar from "examples/Navbars/DashboardNavbar";
-import Footer from "examples/Footer";
 import DataTable from "examples/Tables/DataTable";
-import { GET_DELIVERY_PERSON } from "api/Queries/queryDeliveryPerson";
-import { GET_PATIENTS } from "api/Queries/queryPatients";
-import ProfileInfoCard from "examples/Cards/InfoCards/ProfileInfoCard";
+import {GET_MEDICINE} from "api/Queries/queryMedcine"
 
-const DeliveryPersonTableData = ()=> {
+const MedcineTableData = ()=> {
  const columns  =  [
-    { Header: "Full name", accessor: "full_name", width: "30%", align: "left" },
-    { Header: "Sex", accessor: "sex", align: "left" },
-    { Header: "Phone no", accessor: "phone_number", align: "center" },
-    { Header: "email", accessor: "email", align: "center" },
+    { Header: "Medcine name", accessor: "full_name", width: "30%", align: "left" },
+    { Header: "Price", accessor: "sex", align: "left" },
+    { Header: "Quantity", accessor: "phone_number", align: "center" },
+    // { Header: "email", accessor: "email", align: "center" },
     // { Header: "action", accessor: "action", align: "center" },
   ];
   const rows =  [
@@ -79,7 +68,9 @@ const DeliveryPersonTableData = ()=> {
     </MDBox>
   );
 
-  const { loading, error, data } = useQuery(GET_PATIENTS);
+
+  // const { loading, error, data } = useQuery(GET_MEDCINE, {variables:{id:10}});
+ const { loading, error, data } = useQuery(GET_MEDICINE);
 
   if (loading) return <div><Progress color={"dark"} value={20}/></div>;
   if (error) return <p>Error : {error.message}</p>;
@@ -100,7 +91,7 @@ const DeliveryPersonTableData = ()=> {
     coloredShadow="info"
   >
     <MDTypography variant="h6" color="white">
-      Delivery person
+       MEDCINES
     </MDTypography>
   </MDBox>
   <MDBox pt={3}>
@@ -117,4 +108,4 @@ const DeliveryPersonTableData = ()=> {
   );
 }
 
-export default DeliveryPersonTableData;
+export default MedcineTableData;

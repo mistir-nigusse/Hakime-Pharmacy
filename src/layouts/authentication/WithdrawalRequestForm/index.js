@@ -115,17 +115,7 @@ function Cover() {
    if (data) return <VerifyAccount id={data.pharmacyRegister.id}/>
   
   return (
- <DashboardLayout>
-  <DashboardNavbar/> <br/>
-  <MDGrid container spacing={2} > {/* Grid container with spacing */}
-  <MDGrid items xs={12} md={8}>
-    <Card>
-    <PharmaciesTableData/>
 
-    </Card>
-  </MDGrid>
-  {/* <MDGrid item xs={12} md={1}></MDGrid> */}
-      <MDGrid item xs={12} md={4}  > {/* thrid column */}
 <Card>
         <MDBox
           variant="gradient"
@@ -133,24 +123,23 @@ function Cover() {
           borderRadius="lg"
           coloredShadow="success"
           mx={2}
-          mt={-4}
+          mt={4}
           p={2}
           mb={1}
           textAlign="center"
           fullWidth
         >
           <MDTypography variant="h4" fontWeight="medium" color="white" mt={1}>
-            Join Hakime
+            Request Withdrawal
           </MDTypography>
           <MDTypography display="block" variant="button" color="white" my={1}>
-            Enter all the required fields to register a pharmacy
+            Enter all the required fields to withdrawal money from your wallet
           </MDTypography>
         </MDBox>
         <MDBox pt={4} pb={3} px={3}>
           
   <MDBox component="form" role="form">
-    <MDGrid container spacing={12}> {/* Grid container with spacing */}
-      <MDGrid item xs={6} md={6}> {/* First column */}
+   
         <MDBox mb={2}>
           <MDInput type="text" label="Pharmacy name" variant="standard"   onChange = {(e)=>setPharmacyName(e.target.value)}/>
         </MDBox>
@@ -166,57 +155,18 @@ function Cover() {
       
 
        
-      </MDGrid>
-      <MDGrid item xs={12} md={6}> {/* Second column */}
-        <MDBox mb={2}>
-          <MDInput type="text" label="Owner full name" variant="standard" fullWidth onChange = {(e)=> setOwnerName(e.target.value)}/>
-        </MDBox>
-        <MDBox mb={2}>
-          <MDInput type="text" label="Owner phone" variant="standard" fullWidth     onChange = {(e)=>setPhoneNo(e.target.value)}/>
-        </MDBox>
-        <MDBox mb={2}>
-          <MDInput type="text" label="Office phone" variant="standard" fullWidth     onChange = {(e)=>setOfficePhone(e.target.value)}/>
-        </MDBox>
-        
-        <MDBox mb={2}>
-          <MDInput type="time" label="Close Time" variant="standard" fullWidth onChange = {(e)=>setCloseTime(e.target.value)}/>
-        </MDBox>
-       
-        
-       
-      </MDGrid>
-    </MDGrid>
-      <MDBox mb={2}>
-          <MDInput type="text" label="Location" variant="standard" fullWidth onChange = {(e)=>setLocation(e.target.value)} />
-        </MDBox>
-    <MDBox mb={2}>
-          <MDInput type="text" label="Latitude" variant="standard"  onChange = {(e)=>setLatitude(e.target.value)}/>
-        </MDBox>
-    <MDBox mb={2}>
-    <MDBox mb={2}>
-          <MDInput type="text" label="Longtiude" variant="standard" onChange = {(e)=>setLongtiude(e.target.value)}/>
-        </MDBox>
-          <MDInput type="text" label="logo" variant="standard" fullWidth  onChange = {(e)=>setLogo(e.target.value)}/>
-        </MDBox>
-        <MDBox mb={2}>
-          <MDInput type="text" label="license" variant="standard" fullWidth  onChange = {(e)=>setLicense(e.target.value)} />
-        </MDBox>
-        <MDBox mb={2}>
-          
-          <MDInput type="text" label="owner profile image" variant="standard" fullWidth onChange = {(e)=>setProfilePicture(e.target.value)} />
-        </MDBox>
+    
+  
     <MDBox mt={4} mb={1}>
       <MDButton variant="gradient" color="info" fullWidth onClick={handleSubmit} >
-        Register
+          Send
       </MDButton>
     </MDBox>
   </MDBox>
 </MDBox>
 
       </Card>
-      </MDGrid>
-    </MDGrid>
-      </DashboardLayout>
+ 
   );
 }
 
