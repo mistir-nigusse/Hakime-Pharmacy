@@ -98,7 +98,7 @@ function DefaultNavbar({ transparent, light, action }) {
           pl={{ xs: 0, lg: 1 }}
         >
           <MDTypography variant="button" fontWeight="bold" color={light ? "white" : "dark"}>
-            Hakime Dashboard
+            Hakime Pharmacies
           </MDTypography>
         </MDBox>
 

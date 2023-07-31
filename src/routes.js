@@ -1,14 +1,9 @@
 
 import Dashboard from "layouts/dashboard";
-import Tables from "layouts/tables";
 import Billing from "layouts/billing";
-import Notifications from "layouts/notifications";
-import Advertisment from "layouts/Adverisement"
 import Profile from "layouts/profile";
-import Doctors from "layouts/Doctors";
 import SignIn from "layouts/authentication/sign-in"
 import VerifyAccount from "layouts/authentication/verify-account";
-import NewDoctorProfile from "layouts/Doctors/new-doctor-profile";
 import Icon from "@mui/material/Icon";
 import Orders from "layouts/orders";
 import AddMedcine from "layouts/authentication/AddMedcine"
@@ -75,9 +70,9 @@ const routes = [
   {
     type: "collapse",
     name: "Manage Medcine",
-    key: "sign-up-delivery-person",
+    key: "Manage-medicine",
     icon: <Icon fontSize="small">assignment</Icon>,
-    route: "/authentication/sign-up-delivery-person",
+    route: "/manage-medcinie",
     component: <AddMedcine/>,
   },
   {
@@ -88,13 +83,7 @@ const routes = [
     route: "/profile",
     component: <Profile />,
   },
-  {
-    name: "details",
-    key: "details",
-    icon: <Icon fontSize="small">person</Icon>,
-    route: "/details/:id",
-    component: <NewDoctorProfile />,
-  },
+ 
   {
     type: "collapse",
     name: "Sign Out",

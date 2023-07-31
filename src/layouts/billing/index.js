@@ -6,14 +6,9 @@ import MDBox from "components/MDBox";
 import DashboardLayout from "examples/LayoutContainers/DashboardLayout";
 import DashboardNavbar from "examples/Navbars/DashboardNavbar";
 import Footer from "examples/Footer";
-import MasterCard from "examples/Cards/MasterCard";
 import DefaultInfoCard from "examples/Cards/InfoCards/DefaultInfoCard";
-
-import PaymentMethod from "layouts/billing/components/PaymentMethod";
-import Invoices from "layouts/billing/components/Invoices";
-import BillingInformation from "layouts/billing/components/BillingInformation";
 import Transactions from "layouts/billing/components/Transactions";
-import WithdrawalRequest from "layouts/authentication/WithdrawalRequestForm"
+import WithdrawalRequest from "layouts/billing/components/WithdrawalRequestForm"
 function Billing() {
   return (
     <DashboardLayout>
@@ -29,7 +24,7 @@ function Billing() {
                     icon="account_balance"
                     title="Wallet"
                     description="currently available balance"
-                    value="$2000"
+                    value="23,000 ETB"
                   />
                 </Grid>
                 <Grid item xs={12} md={6} xl={6}>
@@ -37,7 +32,7 @@ function Billing() {
                     icon="account_balance"
                     title="Total"
                     description="total revenue generated"
-                    value="$43,455.00"
+                    value="43,455.00 ETB"
                   />
                 </Grid>
                

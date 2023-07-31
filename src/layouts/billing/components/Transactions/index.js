@@ -37,19 +37,13 @@ function Transactions() {
           m={0}
           sx={{ listStyle: "none" }}
         >
-          <Transaction
-            color="error"
-            icon="expand_more"
-            name="Refund patient Abebe kebede"
-            description="27 March 2020, at 12:30 PM"
-            value="- $ 2,500"
-          />
+         
           <Transaction
             color="success"
             icon="expand_less"
-            name="Medcine delivery, Shewa pharmacy"
+            name="Medcine delivery, Amoxcilinr"
             description="27 March 2020, at 04:30 AM"
-            value="+ $ 2,000"
+            value="+ 200 ETB"
           />
         </MDBox>
         <MDBox mt={1} mb={2}>
@@ -68,31 +62,18 @@ function Transactions() {
           <Transaction
             color="success"
             icon="expand_less"
-            name="Video Consultation"
+            name="Medicine Delivery, tramadol"
             description="26 March 2020, at 13:45 PM"
-            value="+ $ 750"
+            value="+ 75 ETB"
           />
           <Transaction
             color="success"
             icon="expand_less"
-            name="Audio Consultation"
+            name="Medicne Delivery, panadol"
             description="26 March 2020, at 12:30 PM"
-            value="+ $ 1,000"
+            value="+ 10 ETB"
           />
-          <Transaction
-            color="error"
-            icon="expand_more"
-            name="Withdrawal, DR Abebe Kebede"
-            description="26 March 2020, at 08:30 AM"
-            value="-$ 2,500"
-          />
-          <Transaction
-            color="error"
-            icon="expand_more"
-            name="Withdrawal, delivery person"
-            description="26 March 2020, at 05:00 AM"
-            value="-$ 150"
-          />
+
         </MDBox>
       </MDBox>
     </Card>

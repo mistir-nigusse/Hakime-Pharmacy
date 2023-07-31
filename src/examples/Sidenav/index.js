@@ -154,7 +154,10 @@ function Sidenav({ color, brand, brandName, routes, ...rest }) {
             sx={(theme) => sidenavLogoLabel(theme, { miniSidenav })}
           >
             <MDTypography component="h2" variant="button" fontWeight="medium" color={textColor}>
-              HAKIME
+              HAKIME PHARMACIES
+            </MDTypography>
+            <MDTypography component="h5" variant="button" fontWeight="normal" color={textColor}>
+              Pharmacy name
             </MDTypography>
           </MDBox>
         </MDBox>

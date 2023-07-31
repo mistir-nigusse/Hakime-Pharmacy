@@ -1,4 +1,4 @@
-import { useState, useEffect, useMemo } from 'react';
+import { useState, useEffect } from 'react';
 
 import { Routes, Route, Navigate, useLocation } from "react-router-dom";
 
@@ -12,14 +12,10 @@ import Sidenav from "examples/Sidenav";
 import Configurator from "examples/Configurator";
 
 import theme from "assets/theme";
-import themeRTL from "assets/theme/theme-rtl";
 
 import themeDark from "assets/theme-dark";
-import themeDarkRTL from "assets/theme-dark/theme-rtl";
 
-import rtlPlugin from "stylis-plugin-rtl";
-import { CacheProvider } from "@emotion/react";
-import createCache from "@emotion/cache";
+
 
 import routes from "routes";
 
@@ -31,16 +27,17 @@ import brandWhite from "assets/images/logo-ct.png";
 import brandDark from "assets/images/logo-ct-dark.png";
 
 const httpLink = createHttpLink({
-  uri: "https://hakime-2.hasura.app/v1/graphql",
+ // uri: "https://hakime-2.hasura.app/v1/graphql",
+  uri: "https://gedi.hasura.app/v1/graphql"
 });
 const authLink = setContext((_, { headers }) => {
   const token = localStorage.getItem('token');
   return {
     headers: {
      ...headers,
-   //  Authorization: token ? `Bearer ${token}` : "",
-    // 'x-hasura-admin-secret': token ? `Bearer ${token}` : "",
-    'x-hasura-admin-secret': 'hakime',
+   // Authorization: token ? `Bearer ${token}` : "",
+    //'x-hasura-access-key': token ? `Bearer ${token}` : "",
+   'x-hasura-admin-secret': 'hakime',
 
   },
   };
@@ -63,18 +60,9 @@ export default function App() {
     darkMode,
   } = controller;
   const [onMouseEnter, setOnMouseEnter] = useState(false);
-  const [rtlCache, setRtlCache] = useState(null);
   const { pathname } = useLocation();
 
-  // Cache for the rtl
-  useMemo(() => {
-    const cacheRtl = createCache({
-      key: "rtl",
-      stylisPlugins: [rtlPlugin],
-    });
 
-    setRtlCache(cacheRtl);
-  }, []);
 
   // Open sidenav when mouse enter on mini sidenav
   const handleOnMouseEnter = () => {

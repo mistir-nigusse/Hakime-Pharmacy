@@ -6,18 +6,13 @@ import DialogContent from '@mui/material/DialogContent';
 import DialogTitle from '@mui/material/DialogTitle';
 import { Updatewithdrawal } from 'api/mutations/makePayment';
 import { useMutation } from "@apollo/client";
-import FormControlLabel from '@mui/material/FormControlLabel';
-import FormControl from '@mui/material/FormControl';
-import FormLabel from '@mui/material/FormLabel';
-import AddIcon from '@mui/icons-material/Add';
-import { Label } from '@mui/icons-material';
+import { Select, MenuItem } from '@mui/material';
 import { TextField } from '@mui/material';
 import { GET_WITHDRAWAL_REQUEST } from 'api/Queries/queryWithdrawalRequests';
 import MDButton from 'components/MDButton';
 import { useMaterialUIController } from "context";
-import Icon from "@mui/material/Icon";
 
-export default function DeclineButton(props) {
+export default function AddMedcineButton(props) {
   const [controller] = useMaterialUIController();
 
   const { darkMode } = controller;
@@ -28,6 +23,13 @@ export default function DeclineButton(props) {
   const [beneficiaryName, setBeneficiaryName] = React.useState(props.name);
   const [accountNumber, setAccountNumber] = React.useState(props.account);
   const [id, setId] = React.useState(props.id);
+
+  const [selectedOptions, setSelectedOptions] = React.useState([]);
+
+  const handleChange = (event) => {
+    const selectedValues = event.target.value;
+    setSelectedOptions(selectedValues);
+  };
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -70,78 +72,35 @@ if(data) return <p className='text-green-900 font-bold'>confirmed</p>
   return (
    
     <div className=''>
-         <MDButton variant="text" color="error">
-
-<Icon>cancel</Icon>&nbsp;Decline
-</MDButton>
+            <MDButton onClick={handleClickOpen} variant="text" color={darkMode ? "white" : "dark"}>
+    
+         Proceed
+      </MDButton>
       <Dialog open={open} onClose={handleClose} maxWidth="xs" fullWidth>
-        <DialogTitle>Fill out the form</DialogTitle>
+        <DialogTitle>Add all available medcines</DialogTitle>
         <DialogContent>
-         <form onSubmit={handlePayment}>
-         <TextField
-            fullWidth
-            margin="dense"
-            id="beneficiary name"
-            label="Beneficiary name"
-            type="text"
-            variant="standard"
-            required
-            value={beneficiaryName}
-            onChange = {(e)=>setBeneficiaryName(e.target.value)}
-            error = {!beneficiaryName}
-            helperText= {
-              !beneficiaryName? 'Required' : " "
-            }
-          /><br/><br/>
-        <TextField
-            fullWidth
-            margin="dense"
-            id="account"
-            label="Account Number"
-            type="text"
-            variant="standard"
-            required
-            value={accountNumber}
-            onChange = {(e)=>setAccountNumber(e.target.value)}
-            error = {!accountNumber}
-            helperText= {
-              !accountNumber? 'Required' : " "
-            }
-          /><br/><br/>
-            <TextField
-            fullWidth
-            margin="dense"
-            id="name"
-            label="amount"
-            type="text"
-            variant="standard"
-            required
-            
-            value={amount}
-            onChange = {(e)=>setAmount(e.target.value)}
-            error = {!amount}
-            helperText= {
-              !amount? 'Required' : " "
-            }
-          /><br/><br/>
-           
-       
-          
-       
-        </form> 
-      
-
+        <div>
+      <Select
+        multiple
+        value={selectedOptions}
+        onChange={handleChange}
+        renderValue={(selected) => selected.join(', ')}
+      >
+        <MenuItem value="us">United States</MenuItem>
+        <MenuItem value="ca">Canada</MenuItem>
+        <MenuItem value="gb">United Kingdom</MenuItem>
+      </Select>
+    </div>
         </DialogContent>
         <DialogActions>
           {/* <Button onClick={handleClose}>Cancel</Button> */}
-          <MDButton onClick={handlePayment} variant="text" color={darkMode ? "white" : "dark"}>
-  
-         Cancel
-      </MDButton>
           <MDButton variant="text" color="error" onClick={handleClose}>
-              Decline
+              Cancel
             </MDButton>
-            
+            <MDButton onClick={handlePayment} variant="text" color={darkMode ? "white" : "dark"}>
+  
+         Proceed
+      </MDButton>
 
         </DialogActions>
       </Dialog>

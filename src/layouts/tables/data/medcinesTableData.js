@@ -4,75 +4,59 @@ import MDTypography from "components/MDTypography";
 import MDAvatar from "components/MDAvatar";
 import MDProgress from "components/MDProgress";
 import { useQuery, useMutation } from "@apollo/client";
-
+import { Icon } from "@mui/material";
 import Grid from "@mui/material/Grid";
 import Card from "@mui/material/Card";
-
+import IconButton from "@mui/material/IconButton";
+import EditIcon from "@mui/icons-material/Edit";
+import DeleteIcon from "@mui/icons-material/Delete";
 
 import DataTable from "examples/Tables/DataTable";
 import {GET_MEDICINE} from "api/Queries/queryMedcine"
+import DeleteMedicine from "layouts/authentication/AddMedcine/deleteMedcineButton";
+import EditMedicineButton from "layouts/authentication/AddMedcine/editMedcineButton";
 
 const MedcineTableData = ()=> {
+
+const handleEdit=()=>{
+   console.log('Edit')
+}
+
+const handleDelete=(value)=>{
+  console.log('Delete'+ value)
+}
+
  const columns  =  [
-    { Header: "Medcine name", accessor: "full_name", width: "30%", align: "left" },
-    { Header: "Price", accessor: "sex", align: "left" },
-    { Header: "Quantity", accessor: "phone_number", align: "center" },
-    // { Header: "email", accessor: "email", align: "center" },
-    // { Header: "action", accessor: "action", align: "center" },
-  ];
-  const rows =  [
-    {
-      Full_name: "mistir nigusse",
-      Sex: "female",
-      Phone_no: "0922331422",
-      Email : "mistir@gmail.com"
+  // { Header: "Id", accessor: "id", width: "5%", align: "left" },
+    { Header: "Medcine name", accessor: "name", width: "30%", align: "left" },
+    { Header: "Price", accessor: "price", width:"10%", align: "left" },
+    { 
+      Header: "Must be prescribed", 
+      width:"10%",
+      accessor: "must_prescribed", 
+      align: "center", 
+      Cell: ({ value }) => value ? 'Yes' : 'No' 
     },
- 
-    // {
-    //   project: <Project image={logoInvesion} name="Invesion" />,
-    //   budget: (
-    //     <MDTypography component="a" href="#" variant="button" color="text" fontWeight="medium">
-    //       $2,300
-    //     </MDTypography>
-    //   ),
-    //   status: (
-    //     <MDTypography component="a" href="#" variant="caption" color="text" fontWeight="medium">
-    //       done
-    //     </MDTypography>
-    //   ),
-    //   completion: <Progress color="success" value={100} />,
-    //   action: (
-    //     <MDTypography component="a" href="#" color="text">
-    //       <Icon>more_vert</Icon>
-    //     </MDTypography>
-    //   ),
-    // },
+    { 
+      Header: "Actions",
+      accessor: "id",
+      align: "center",
+      Cell: ({ value }) => (
+        <>
+       
+        <EditMedicineButton/>
+        <DeleteMedicine medicineId={value} pharmacyId={13}/>
+
+        {/* <DeleteMedicine medicineId={value} pharmacyId={localStorage.getItem('pharamacyId')}/> */}
+      </>
+      )
+    }
+  
+  
   ];
-  const Project = ({ image, name }) => (
-    <MDBox display="flex" alignItems="center" lineHeight={1}>
-      <MDAvatar src={image} name={name} size="sm" variant="rounded" />
-      <MDTypography display="block" variant="button" fontWeight="medium" ml={1} lineHeight={1}>
-        {name}
-      </MDTypography>
-    </MDBox>
-  );
+  const { loading, error, data } = useQuery(GET_MEDICINE, {variables:{pharmacyId: 13}});
 
-  const Progress = ({ color, value }) => (
-    <MDBox display="flex" alignItems="center">
-      <MDTypography variant="caption" color="text" fontWeight="medium">
-        {value}%
-      </MDTypography>
-      <MDBox ml={0.5} width="9rem">
-        <MDProgress variant="gradient" color={color} value={value} />
-      </MDBox>
-    </MDBox>
-  );
-
-
-  // const { loading, error, data } = useQuery(GET_MEDCINE, {variables:{id:10}});
- const { loading, error, data } = useQuery(GET_MEDICINE);
-
-  if (loading) return <div><Progress color={"dark"} value={20}/></div>;
+  if (loading) return <div>loading</div>;
   if (error) return <p>Error : {error.message}</p>;
   console.log("hello" +data)
 
@@ -96,11 +80,12 @@ const MedcineTableData = ()=> {
   </MDBox>
   <MDBox pt={3}>
     <DataTable
-      table={{ columns: columns, rows: data.users }}
+      table={{ columns: columns, rows: data.medicine }}
       isSorted={true}
       entriesPerPage={true}
       showTotalEntries={true}
       noEndBorder
+      
     />
   </MDBox>
 </Card>

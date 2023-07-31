@@ -89,11 +89,11 @@ const colors = {
 
     info: {
       main: "#49a3f1",
-      state: "#059e3f",
+      state: "#027148",
     },
 
     success: {
-      main: "#66BB6A",
+      main: "#027148",
       state: "#43A047",
     },
 
@@ -114,7 +114,7 @@ const colors = {
 
     dark: {
       main: "#4a8209",
-      state: "#1B5E20",
+      state: "#013220",
     },
   },
 

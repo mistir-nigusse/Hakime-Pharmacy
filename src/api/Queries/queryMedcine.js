@@ -1,7 +1,7 @@
 import {useQuery, gql} from '@apollo/client';
 export const GET_MEDICINE= gql`
-query GET_MEDICINE($id: Int) {
-    medicine(where: {pharmacy_id: {_eq: $id}}) {
+query GET_MEDICINE($pharmacyId: Int!) {
+    medicine(where: {pharmacy_id: {_eq: $pharmacyId}}) {
       id
       name
       price
@@ -14,4 +14,16 @@ query GET_MEDICINE($id: Int) {
   }
 
   `;
+
   
+  export const GET_MEDICINE_ID= gql`
+  query GET_MEDICINE($pharmacyId: Int!) {
+      medicine(where: {pharmacy_id: {_eq: $pharmacyId}}) {
+        id
+        name
+      }
+    }
+  
+    `;
+    
+    

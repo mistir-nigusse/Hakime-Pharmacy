@@ -9,9 +9,6 @@ import ReportsLineChart from "examples/Charts/LineCharts/ReportsLineChart";
 import ComplexStatisticsCard from "examples/Cards/StatisticsCards/ComplexStatisticsCard";
 import reportsBarChartData from "layouts/dashboard/data/reportsBarChartData";
 import reportsLineChartData from "layouts/dashboard/data/reportsLineChartData";
-import Projects from "layouts/dashboard/components/Projects";
-import OrdersOverview from "layouts/dashboard/components/OrdersOverview";
-import AppointmentTable from "layouts/tables/data/appointmentTableData";
 
 function Dashboard() {
   const { sales, tasks } = reportsLineChartData;
@@ -21,12 +18,12 @@ function Dashboard() {
       <DashboardNavbar />
       <MDBox py={3}>
         <Grid container spacing={3}>
-          <Grid item xs={12} md={6} lg={3}>
+          <Grid item xs={12} md={4} lg={4}>
             <MDBox mb={1.5}>
               <ComplexStatisticsCard
                 color="success"
-                icon="leaderboard"
-                title="Users"
+                icon="people"
+                title="Customers"
                 count={2300}
                 percentage={{
                   color: "success",
@@ -36,12 +33,12 @@ function Dashboard() {
               />
             </MDBox>
           </Grid>
-          <Grid item xs={12} md={6} lg={3}>
+          <Grid item xs={12} md={4} lg={4}>
             <MDBox mb={1.5}>
               <ComplexStatisticsCard
-                icon="person_add"
+                icon="shop"
                 color="success"
-                title="Doctors"
+                title="Orders"
                 count="221"
                 percentage={{
                   color: "success",
@@ -51,12 +48,12 @@ function Dashboard() {
               />
             </MDBox>
           </Grid>
-          <Grid item xs={12} md={6} lg={3}>
+          <Grid item xs={12} md={4} lg={4}>
             <MDBox mb={1.5}>
               <ComplexStatisticsCard
                 color="success"
-                icon="store"
-                title="Pharmacies"
+                icon="medication"
+                title="Medcines"
                 count="34"
                 percentage={{
                   color: "success",
@@ -66,25 +63,11 @@ function Dashboard() {
               />
             </MDBox>
           </Grid>
-          <Grid item xs={12} md={6} lg={3}>
-            <MDBox mb={1.5}>
-              <ComplexStatisticsCard
-                color="success"
-                icon="person_add"
-                title="Delivery workers"
-                count="56"
-                percentage={{
-                  color: "success",
-                  amount: "+10%",
-                  label: "than last month",
-                }}
-              />
-            </MDBox>
-          </Grid>
+         
         </Grid>
         <MDBox mt={4.5}>
           <Grid container spacing={3}>
-            <Grid item xs={12} md={6} lg={4}>
+            <Grid item xs={12} md={6} lg={6}>
               <MDBox mb={3}>
                 <ReportsBarChart
                   color="info"
@@ -95,7 +78,7 @@ function Dashboard() {
                 />
               </MDBox>
             </Grid>
-            <Grid item xs={12} md={6} lg={4}>
+            <Grid item xs={12} md={6} lg={6}>
               <MDBox mb={3}>
                 <ReportsLineChart
                   color="success"
@@ -110,31 +93,22 @@ function Dashboard() {
                 />
               </MDBox>
             </Grid>
-            <Grid item xs={12} md={6} lg={4}>
-              <MDBox mb={3}>
-                <ReportsLineChart
-                  color="info"
-                  title="Consultation sessions"
-                  description="Doctor consultations held"
-                  date="This month"
-                  chart={tasks}
-                />
-              </MDBox>
-            </Grid>
+          \
           </Grid>
         </MDBox>
-        <MDBox>
+        {/* <MDBox>
           <Grid container spacing={3}>
             <Grid item xs={12} md={6} lg={8}>
               <br/>
               <AppointmentTable/>
-              {/* <Projects /> */}
+             <Projects /> 
             </Grid>
             <Grid item xs={12} md={6} lg={4}>
               <OrdersOverview />
             </Grid>
           </Grid>
-        </MDBox>
+        </MDBox> 
+        */}
       </MDBox>
       <Footer />
     </DashboardLayout>

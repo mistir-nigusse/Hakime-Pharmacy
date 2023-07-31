@@ -1,8 +1,8 @@
 
 const colors = {
   background: {
-    default: "#1a2035",
-    sidenav: "#1B5E20",
+    default: "#027148",
+    sidenav: "#013220",
     card: "#202940",
   },
 
@@ -37,7 +37,7 @@ const colors = {
   },
 
   info: {
-    main: "#059e3f",
+    main: "#027148",
     focus: "#1662C4",
   },
 
@@ -62,7 +62,7 @@ const colors = {
   },
 
   dark: {
-    main: "#1B5E20",
+    main: "#013220",
     focus: "#2c3c58",
   },
 

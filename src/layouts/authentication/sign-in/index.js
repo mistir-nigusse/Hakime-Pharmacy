@@ -1,52 +1,74 @@
-/**
-=========================================================
-* Material Dashboard 2 React - v2.1.0
-=========================================================
 
-* Product Page: https://www.creative-tim.com/product/material-dashboard-react
-* Copyright 2022 Creative Tim (https://www.creative-tim.com)
-
-Coded by www.creative-tim.com
-
- =========================================================
-
-* The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
-*/
 
 import { useState } from "react";
 
-// react-router-dom components
 import { Link } from "react-router-dom";
 
-// @mui material components
 import Card from "@mui/material/Card";
-import Switch from "@mui/material/Switch";
-import Grid from "@mui/material/Grid";
-import MuiLink from "@mui/material/Link";
+import CircularProgress from '@mui/material/CircularProgress';
 
-// @mui icons
-import FacebookIcon from "@mui/icons-material/Facebook";
-import GitHubIcon from "@mui/icons-material/GitHub";
-import GoogleIcon from "@mui/icons-material/Google";
-
-// Material Dashboard 2 React components
 import MDBox from "components/MDBox";
 import MDTypography from "components/MDTypography";
 import MDInput from "components/MDInput";
 import MDButton from "components/MDButton";
-
-// Authentication layout components
+import { Backdrop } from "@mui/material";
 import BasicLayout from "layouts/authentication/components/BasicLayout";
+import SignIn from "layouts/authentication/sign-in"
+
 // Images
 import bgImage from "assets/images/pharmacist.jpg";
-// import VerifyAccount from "layout/authentication/reset-password/cover";
-function Basic() {
-  const [rememberMe, setRememberMe] = useState(false);
+import { LOGIN } from "api/mutations/login";
+import { useMutation } from "@apollo/client";
+import { useNavigate } from "react-router";
 
-  const handleSetRememberMe = () => setRememberMe(!rememberMe);
+function Basic() {
+  const [login,{loading,error,data}] = useMutation(LOGIN);
+
+  const [open, setOpen] = useState(false);
+  const handleClose = () => {
+    setOpen(false);
+  };
+  const handleOpen = () => {
+    setOpen(true);
+  };
+ 
+  const navigate = useNavigate();
+  const [email, setEmail] = useState("");
+  const [password, setPassword ] = useState("");
+  const [token , setToken] = useState ("");
+  const [loggedIn, setLoggedIn] = useState(false);
+  const [errorMessage, setErrorMessage] = useState("");
+
+  const loginHandler = async (e) => {
+    handleOpen()
+    e.preventDefault();
+    
+   // console.log("login", email, password);
+    try {
+      const token = await login({ variables: { email: email , password: password}});
+     // console.log(token)
+      localStorage.setItem('token',token.data.pharmacylogin.token)
+      localStorage.setItem('pharmacyId', token.data.pharmacylogin.id )
+      navigate("/");
+     // console.log("tokennn",localStorage.getItem('token'))
+      //console.log("iddd", localStorage.getItem('pharmacyId'))
+   
+    }
+    catch (error){
+      console.log("error", {error})
+     setErrorMessage("please make sure ur email and password is correct")
+    }
+
+
+    }
+//    if (loading) return <p>loading</p>
+// ;
+//    if (error) return "error";
 
   return (
+
     <BasicLayout image={bgImage}>
+      
       <Card>
         <MDBox
           variant="gradient"
@@ -59,55 +81,44 @@ function Basic() {
           mb={1}
           textAlign="center"
         >
-          <MDTypography variant="h4" fontWeight="medium" color="white" mt={1}>
-            Sign in
+          <MDTypography variant="h3" fontWeight="medium" color="white" mb={2} mt={2} ml={1} mr={1}>
+            Welcome to Hakime
           </MDTypography>
-          
+          <MDTypography variant="h6" fontWeight="medium" color="white" p={1}>
+            Sign In
+          </MDTypography>
+         
         </MDBox>
         <MDBox pt={4} pb={3} px={3}>
           <MDBox component="form" role="form">
+          {error &&         <MDBox p={1}>  <MDTypography variant="caption"   color="error">
+{errorMessage}</MDTypography>
+</MDBox>}
             <MDBox mb={2}>
-              <MDInput type="email" label="Email" fullWidth />
+              <MDInput type="email" label="Email" fullWidth  onChange={ e=> setEmail(e.target.value)}/>
             </MDBox>
             <MDBox mb={2}>
-              <MDInput type="password" label="Password" fullWidth />
+              <MDInput type="password" label="Password" fullWidth onChange = { e=> setPassword(e.target.value)} />
             </MDBox>
-            <MDBox display="flex" alignItems="center" ml={-1}>
-              <Switch checked={rememberMe} onChange={handleSetRememberMe} />
-              <MDTypography
-                variant="button"
-                fontWeight="regular"
-                color="text"
-                onClick={handleSetRememberMe}
-                sx={{ cursor: "pointer", userSelect: "none", ml: -1 }}
-              >
-                &nbsp;&nbsp;Remember me
-              </MDTypography>
-            </MDBox>
+           
             <MDBox mt={4} mb={1}>
-              <MDButton variant="gradient" color="info" fullWidth>
+              <MDButton variant="gradient" color="info" fullWidth onClick={loginHandler}>
                 sign in
               </MDButton>
             </MDBox>
-            <MDBox mt={3} mb={1} textAlign="center">
-              <MDTypography variant="button" color="text">
-                Don&apos;t have an account?{" "}
-                <MDTypography
-                  component={Link}
-                  to="/authentication/sign-up"
-                  variant="button"
-                  color="info"
-                  fontWeight="medium"
-                  textGradient
-                >
-                  Sign up
-                </MDTypography>
-              </MDTypography>
-            </MDBox>
+          
           </MDBox>
         </MDBox>
       </Card>
+  {loading &&     <Backdrop
+   sx={{ color: '#fff', zIndex: (theme) => theme.zIndex.drawer + 1 }}
+   open={open}
+   onClick={handleClose}
+ >
+  <CircularProgress color="white"/>
+  </Backdrop>}
     </BasicLayout>
+  
   );
 }
 

@@ -6,12 +6,16 @@ import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
-import { Tooltip, Icon } from '@mui/material';
 import { useMutation } from '@apollo/client';
+import { DELETE_BANNER } from 'api/mutations/advertisementMutations';
+import { DELETE_MEDICINE } from 'api/mutations/deleteMedcine';
+import { GET_ADS } from 'api/Queries/queryAds';
+import Icon from "@mui/material/Icon";
+import Tooltip from "@mui/material/Tooltip";
+import { GET_MEDICINE } from 'api/Queries/queryMedcine';
 
-import { DELETE_SPECIALITY } from 'api/mutations/speciallityMutation';
-import { GET_SPECIALITIES } from 'api/Queries/specialitiesQuery';
-export default function DeleteSpeciality(props) {
+
+export default function DeleteMedicine(props) {
   const [open, setOpen] = React.useState(false);
 
   const handleClickOpen = () => {
@@ -21,28 +25,29 @@ export default function DeleteSpeciality(props) {
   const handleClose = () => {
     setOpen(false);
   };
- const handleSpecialityDelete = () =>{
+ const handleMedicineDelete = () =>{
   console.log(props.id)
-  deleteSpeciality({variables:{id:props.id}})
+  deleteMedicine({variables:{medicineId: props.medicineId, pharmacyId: props.pharmacyId}})
   handleClose()
 
  }
- const [deleteSpeciality,{data,loading,error}] = useMutation(DELETE_SPECIALITY,{
+ const [deleteMedicine,{data,loading,error}] = useMutation(DELETE_MEDICINE,{
   refetchQueries:[
-    {query: GET_SPECIALITIES},
-    'GET_SPECIALITIES'
+    {query: GET_MEDICINE},
+    'GET_MEDICINE'
   ]
  });
 
   return (
     <div>
-      <Button  onClick={handleClickOpen}>
-         <Tooltip title="Delete speciality" placement="top">
-                          <Icon sx={{ cursor: "pointer" }} fontSize="small">
-                            delete
-                          </Icon>
-                        </Tooltip>
+     <Tooltip title="Delete Medicine" placement="top">
+      <Button onClick={handleClickOpen}>
+      <Icon sx={{ cursor: "pointer" , color:"error"}}  fontSize="medium">
+                    delete
+                  </Icon>
       </Button>
+               
+                </Tooltip>
       <Dialog open={open} onClose={handleClose}>
         <DialogTitle></DialogTitle>
         <DialogContent>
@@ -53,7 +58,7 @@ export default function DeleteSpeciality(props) {
         </DialogContent>
         <DialogActions>
           <Button onClick={handleClose}>Cancel</Button>
-          <Button variant='contained' color='error' onClick={handleSpecialityDelete}>Delete</Button>
+          <Button variant='contained' color='error' onClick={handleMedicineDelete}>Delete</Button>
         </DialogActions>
       </Dialog>
     </div>
